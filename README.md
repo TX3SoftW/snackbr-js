@@ -80,3 +80,6 @@ Esto genera un enlace dentro del Snackbar:
 ```JAVASCRIPT
 snackbr(true, false, "Esto es un <a href='http://enlace.al/sitio/malicioso'>enlace</a>");
 ```
+## LICENCIA
+
+Se distribuye bajo licencia Apache 2.0 [Ir a la licencia](LICENSE.txt)
