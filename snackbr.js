@@ -88,7 +88,7 @@ function snackbr(s, n, a, c, k, b, r){
 		clearTimeout(snackbrDly);
 		snackbrDly = null;
 	}
-	eSB.style = "border-color:#222";
+	eSB.style = "border-color:"+((n===true)?"red;":"#222;");
 	if(typeof s === 'boolean' && s == true){
 		if(typeof c === 'boolean' && c == true){
 			ePL.style = "display:block;";
