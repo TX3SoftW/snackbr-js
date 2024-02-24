@@ -15,7 +15,7 @@ Descargue ambos archivos `snackbr.min.css` y `snackbr.min.js`, y cárguelos en e
 <body>
 ```
 
-## OPCIONES
+## PARÁMETROS
 
 ```JAVASCRIPT
 snackbr(VISIBLE, ERROR, TEXTO, CARGANDO, TEMPORIZADO, TIEMPO, ICONO);
@@ -24,14 +24,15 @@ snackbr(VISIBLE, ERROR, TEXTO, CARGANDO, TEMPORIZADO, TIEMPO, ICONO);
 | PARÁMETRO | TIPO DE DATOS | POR DEFECTO | DESCRIPCIÓN |
 | --------- | ------------- | ----------- | ----------- |
 | VISIBLE\* | boolean | indeterminado | Muestra u oculta el snackbar. |
-| ERROR\* | boolean | indeterminado | Muestra en color rojo si hay error (true). |
-| TEXTO\* | string | indeterminado | El texto a mostrar (se puede usar etiquetas HTML). |
+| ERROR\*\* | boolean | indeterminado | Muestra en color rojo si hay error (true). |
+| TEXTO\*\* | string | indeterminado | El texto a mostrar (se puede usar etiquetas HTML). |
 | CARGANDO | boolean | false | Muestra una animación de un circulo girando. |
 | TEMPORIZADO | boolean | false | Define si pasado un tiempo en segundos se oculta automáticamente o queda visible indefinidamente. |
 | TIEMPO | int | 3 segundos | Tiempo en segundos antes de auto-ocultarse. |
 | ICONO | "adv", "err", "info" | indeterminado | Color del ícono en forma de admiración (!). Si no se define, no se muestra. |
 
 \**Obligatorio.*
+\*\**Obligatorio si `VISIBLE` es `TRUE`*
 
 ## USO
 ### Para mostrar;
