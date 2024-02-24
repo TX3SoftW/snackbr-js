@@ -33,7 +33,7 @@ generarSnackbr(ALTO, LADO);
 ***/
 
 var snackbrDly = null;
-var snackbrVersion = "1.0.0.0";
+var snackbrVersion = "1.0.0.1";
 function generarSnackbr(posAltura, posLado){
   if(typeof posAltura !== 'string' || posAltura == '' || typeof posLado !== 'string' || posLado == ''){
     console.error("ERROR Snackbr: Los parámetros ingresados son incorrectos");
