@@ -75,7 +75,7 @@ function snackbr(s, n, a, c, k, b, r){
 		generarSnackbr("abajo", "centro");
 		console.log("SNACKBR autogenerado...");
 	}
-  if(typeof s !== 'boolean' || typeof n !== 'boolean' || typeof a !== 'string' || a == ''){
+  if((typeof n!== 'undefined' && typeof n!== 'boolean') || (typeof a!== 'undefined' && (typeof a!== 'string' || a == ''))){
     console.error("ERROR Snackbr: Los parámetros ingresados son incorrectos");
     console.log("Uso: snackbr(boolean, boolean, string, boolean, boolean, int, string);");
     return false;
