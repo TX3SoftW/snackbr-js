@@ -1,8 +1,8 @@
 /***
-*** SNACKBR-JS v1.0                        ***
-*** Autor:  TX3,  SoftW.                     ***
-*** Email:  dj_tato3@yahoo.com              ***
-*** https: //github.com/TX3SoftW/snackbr-js ***
+*** SNACKBR-JS v1.1.0.0                    ***
+*** Autor: TX3, SoftW.                     ***
+*** Email: dj_tato3@yahoo.com              ***
+*** https://github.com/TX3SoftW/snackbr-js ***
 
 snackbr(VISIBLE, ERROR, TEXTO, CARGANDO, TEMPORIZADO, TIEMPO, ICONO);
 
@@ -32,6 +32,17 @@ Puede especificar la posición llamando al final del body a:
 generarSnackbr(ALTO, LADO);
 
 </script>
+
+
+Changelog: v1.1.0.0 (2025/01/31)
+	+ Agregado tema oscuro y claro automatico
+	+ Se comprueba si las posiciones existen, sino se usan las por defecto
+	
+	* Arreglos en el codigo
+	
+Changelog: v1.0.0.1 (2024/01/22)
+	Primera version publicada
+	
 ***/
 .snackbr_todo {
 	width: calc(100% - 20px);
@@ -64,11 +75,18 @@ generarSnackbr(ALTO, LADO);
 }
 
 #snackbr {
+	--snackbr-texto: #000;
+	--snackbr-fondo: #EEE;
+	--snackbr-borde: #999;
+	--snackbr-enlace-texto:#EEE;
+	--snackbr-enlace-fondo:#5c5c5c;
+	--snackbr-enlace-hover:#6439FF;
+	
 	display: flex;
-	background-color: #22272f;
-	color: #FFF;
+	background-color: var(--snackbr-fondo);
+	color: var(--snackbr-texto);
 	text-align: center;
-	border: 1px #222 solid;
+	border: 1px var(--snackbr-borde) solid;
 	border-radius: 20px;
 	padding: 16px;
 	position: absolute;
@@ -76,6 +94,14 @@ generarSnackbr(ALTO, LADO);
 	visibility: hidden;
 	align-items: center;
 	cursor: pointer;
+}
+#snackbr.oscuro {
+	--snackbr-texto: #FFF;
+	--snackbr-fondo: #22272f;
+	--snackbr-borde: #222;
+	--snackbr-enlace-texto:#EEE;
+	--snackbr-enlace-fondo:#5c5c5c;
+	--snackbr-enlace-hover:#6439FF;
 }
 
 .snackbr_todo.arriba #snackbr {
@@ -210,7 +236,7 @@ generarSnackbr(ALTO, LADO);
 	width: 20px;
 	height: 20px;
 	border: 4px solid transparent;
-	border-top: 4px solid #FFF;
+	border-top: 4px solid var(--snackbr-texto);
 	border-radius: 50%;
 	animation-name: girar;
 	animation-duration: 1.8s;
@@ -228,7 +254,7 @@ generarSnackbr(ALTO, LADO);
 }
 
 #snackbr strong {
-	text-shadow: 0px 0px 3px #000;
+	text-shadow: 0px 0px 3px var(--snackbr-fondo);
 }
 
 #snackbr #snackbr_texto {
@@ -252,15 +278,12 @@ generarSnackbr(ALTO, LADO);
 	margin: 0px 5px;
 	padding: 0px 10px;
 	border-radius: 15px;
+	color: var(--snackbr-enlace-texto);
+	background-color: var(--snackbr-enlace-fondo);
 }
 
-#snackbr #snackbr_texto a {
-	color: #EEE;
-	background-color: #5c5c5c;
-}
-
-#snackbr #snackbr_texto a: hover {
-	background-color: #6439FF;
+#snackbr #snackbr_texto a:hover {
+	background-color: var(--snackbr-enlace-hover);
 }
 
 #snackbr #snackbr_texto .errornotif {

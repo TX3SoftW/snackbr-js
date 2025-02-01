@@ -1,18 +1,18 @@
 /***
-*** SNACKBR-JS v1.0                        ***
+*** SNACKBR-JS v1.1.0.0                    ***
 *** Autor: TX3, SoftW.                     ***
 *** Email: dj_tato3@yahoo.com              ***
 *** https://github.com/TX3SoftW/snackbr-js ***
 
 snackbr(VISIBLE, ERROR, TEXTO, CARGANDO, TEMPORIZADO, TIEMPO, ICONO);
 
-- VISIBLE* (boolean):           (indeterminado) Muestra u oculta el snackbar.
-- ERROR*   (boolean):           (indeterminado) Muestra en color rojo si hay error (true).
-- TEXTO*   (string):            (indeterminado) El texto a mostrar (se puede usar etiquetas HTML).
-- CARGANDO (boolean):           (false)         Muestra una animación de un circulo girando.
-- TEMPORIZADO (boolean):        (false)         Define si pasado un tiempo en segundos se oculta automáticamente o queda visible indefinidamente.
-- TIEMPO (int):                 (3 segundo)     Tiempo en segundo antes de auto-ocultarse.
-- ICONO ("adv", "err", "info"): (indeterminado) Color del ícono en forma de admiración (!). Si no se define, no se muestra.
+- VISIBLE*    (boolean):              (indeterminado) Muestra u oculta el snackbar.
+- ERROR*      (boolean):              (indeterminado) Muestra en color rojo si hay error (true).
+- TEXTO*      (string):               (indeterminado) El texto a mostrar (se puede usar etiquetas HTML).
+- CARGANDO    (boolean):              (false)         Muestra una animación de un circulo girando.
+- TEMPORIZADO (boolean):              (false)         Define si pasado un tiempo en segundos se oculta automáticamente o queda visible indefinidamente.
+- TIEMPO      (int):                  (3 segundo)     Tiempo en segundo antes de auto-ocultarse.
+- ICONO       ("adv", "err", "info"): (indeterminado) Color del ícono en forma de admiración (!). Si no se define, no se muestra.
 
 *Obligatorio.
 
@@ -30,21 +30,36 @@ Puede especificar la posición llamando al final del body a:
 // LADO (string): "izquierda", "centro", "derecha"
 generarSnackbr(ALTO, LADO);
 </script>
+
+Changelog: v1.1.0.0 (2025/01/31)
+	+ Agregado tema oscuro y claro automatico
+	+ Se comprueba si las posiciones existen, sino se usan las por defecto
+	
+	* Arreglos en el codigo
+	
+Changelog: v1.0.0.1 (2024/01/22)
+	Primera version publicada
+	
 ***/
 
+const snackbrOscuro = (d) => {let b = document.getElementById("snackbr").classList;if(d){b.add("oscuro");}else{b.remove("oscuro");}};
 var snackbrDly = null;
-var snackbrVersion = "1.0.0.1";
+var snackbrVersion = "1.1.0.0";
+var snackbrPosiciones = {"alto":["arriba","abajo"],"lado":["izquierda","centro","derecha"]};
+
 function generarSnackbr(posAltura, posLado){
-  if(typeof posAltura !== 'string' || posAltura == '' || typeof posLado !== 'string' || posLado == ''){
-    console.error("ERROR Snackbr: Los parámetros ingresados son incorrectos");
-    console.log("Uso: generarSnackbr(string, string);");
-    return false;
-  }
-  if(document.getElementById("snackbr") !== null){
-    console.log("ERROR Snackbr: Hay un snackbar creado");
-    return false;
-  }
+	if(typeof posAltura !== 'string' || posAltura == '' || typeof posLado !== 'string' || posLado == ''){
+		console.error("ERROR Snackbr: Los parámetros ingresados son incorrectos");
+		console.log("Uso: generarSnackbr(string, string);");
+		return false;
+	}
+	if(document.getElementById("snackbr") !== null){
+		console.log("ERROR Snackbr: Hay un snackbar creado");
+		return false;
+	}
 	let elTodo = document.createElement("div");
+	posAltura = snackbrPosiciones.alto.includes(posAltura) ? posAltura : "abajo";
+	posLado = snackbrPosiciones.lado.includes(posLado) ? posLado : "centro";
 	elTodo.className = "snackbr_todo " + posAltura + " " + posLado;
 	
 	let elGral = document.createElement("div");
@@ -66,20 +81,28 @@ function generarSnackbr(posAltura, posLado){
 	elTodo.appendChild(elGral);
 	
 	document.body.appendChild(elTodo);
+	
+	if (window.matchMedia){
+		window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+			snackbrOscuro(event.matches);
+		});
+		snackbrOscuro(window.matchMedia('(prefers-color-scheme: dark)').matches);
+	}
 
-  return true;
+	return true;
 }
 
+// snackbr(VISIBLE, ERROR, TEXTO, CARGANDO, TEMPORIZADO, TIEMPO, ICONO);
 function snackbr(s, n, a, c, k, b, r){
 	if(document.getElementById("snackbr") === null){
 		generarSnackbr("abajo", "centro");
 		console.log("SNACKBR autogenerado...");
 	}
-  if((typeof n!== 'undefined' && typeof n!== 'boolean') || (typeof a!== 'undefined' && (typeof a!== 'string' || a == ''))){
-    console.error("ERROR Snackbr: Los parámetros ingresados son incorrectos");
-    console.log("Uso: snackbr(boolean, boolean, string, boolean, boolean, int, string);");
-    return false;
-  }
+	if((typeof n !== 'undefined' && typeof n !== 'boolean') || (typeof a !== 'undefined' && (typeof a !== 'string' || a == ''))){
+		console.error("ERROR Snackbr: Los parámetros ingresados son incorrectos");
+		console.log("Uso: snackbr(boolean, boolean, string, boolean, boolean, int, string);");
+		return false;
+	}
 	let eSB = document.getElementById("snackbr");
 	let eSBT = document.getElementById("snackbr_texto");
 	let ePL = eSB.querySelector(".snackbr_cargador");
@@ -88,7 +111,7 @@ function snackbr(s, n, a, c, k, b, r){
 		clearTimeout(snackbrDly);
 		snackbrDly = null;
 	}
-	eSB.style = "border-color:"+((n===true)?"red;":"#222;");
+	eSB.style = "border-color:"+((n===true)?"red;":"var(--snackbr-borde);");
 	if(typeof s === 'boolean' && s == true){
 		if(typeof c === 'boolean' && c == true){
 			ePL.style = "display:block;";
