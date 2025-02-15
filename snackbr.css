@@ -33,6 +33,8 @@ generarSnackbr(ALTO, LADO);
 
 </script>
 
+Changelog: v1.1.0.1 (2025/02/15)
+	+ Agregado posibilidad de manipular el tiempo de animacion desde la variable --snackbr-animacion-duracion
 
 Changelog: v1.1.0.0 (2025/01/31)
 	+ Agregado tema oscuro y claro automatico
@@ -81,6 +83,7 @@ Changelog: v1.0.0.1 (2024/01/22)
 	--snackbr-enlace-texto:#EEE;
 	--snackbr-enlace-fondo:#5c5c5c;
 	--snackbr-enlace-hover:#6439FF;
+	--snackbr-animacion-duracion: 0.3s;
 	
 	display: flex;
 	background-color: var(--snackbr-fondo);
@@ -105,14 +108,14 @@ Changelog: v1.0.0.1 (2024/01/22)
 }
 
 .snackbr_todo.arriba #snackbr {
-	animation: fadeoutArriba 0.3s linear 0s 1 normal forwards;
-	-webkit-animation: fadeoutArriba 0.3s linear 0s 1 normal forwards;
+	animation: fadeoutArriba var(--snackbr-animacion-duracion) linear 0s 1 normal forwards;
+	-webkit-animation: fadeoutArriba var(--snackbr-animacion-duracion) linear 0s 1 normal forwards;
 	margin-top: 10px;
 }
 
 .snackbr_todo.abajo #snackbr {
-	animation: fadeout 0.3s linear 0s 1 normal forwards;
-	-webkit-animation: fadeout 0.3s linear 0s 1 normal forwards;
+	animation: fadeout var(--snackbr-animacion-duracion) linear 0s 1 normal forwards;
+	-webkit-animation: fadeout var(--snackbr-animacion-duracion) linear 0s 1 normal forwards;
 	margin-bottom: 10px;
 }
 
@@ -169,13 +172,13 @@ Changelog: v1.0.0.1 (2024/01/22)
 }
 
 .snackbr_todo.arriba #snackbr.mostrar {
-	animation: fadeinArriba 0.3s linear 0s 1 normal forwards;
-	-webkit-animation: fadeinArriba 0.3s linear 0s 1 normal forwards;
+	animation: fadeinArriba var(--snackbr-animacion-duracion) linear 0s 1 normal forwards;
+	-webkit-animation: fadeinArriba var(--snackbr-animacion-duracion) linear 0s 1 normal forwards;
 }
 
 .snackbr_todo.abajo #snackbr.mostrar {
-	animation: fadein 0.3s linear 0s 1 normal forwards;
-	-webkit-animation: fadein 0.3s linear 0s 1 normal forwards;
+	animation: fadein var(--snackbr-animacion-duracion) linear 0s 1 normal forwards;
+	-webkit-animation: fadein var(--snackbr-animacion-duracion) linear 0s 1 normal forwards;
 }
 
 @-webkit-keyframes fadeinArriba {

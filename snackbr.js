@@ -31,6 +31,9 @@ Puede especificar la posición llamando al final del body a:
 generarSnackbr(ALTO, LADO);
 </script>
 
+Changelog: v1.1.0.1 (2025/02/15)
+	+ Agregado posibilidad de manipular el tiempo de animacion desde la variable --snackbr-animacion-duracion
+	
 Changelog: v1.1.0.0 (2025/01/31)
 	+ Agregado tema oscuro y claro automatico
 	+ Se comprueba si las posiciones existen, sino se usan las por defecto
