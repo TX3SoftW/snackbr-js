@@ -49,6 +49,7 @@ const snackbrOscuro = (d) => {let b = document.getElementById("snackbr").classLi
 var snackbrDly = null;
 var snackbrVersion = "1.1.0.0";
 var snackbrPosiciones = {"alto":["arriba","abajo"],"lado":["izquierda","centro","derecha"]};
+var snackbrModoOscuro = typeof snackbrModoOscuro == "boolean" ? snackbrModoOscuro : true;
 
 function generarSnackbr(posAltura, posLado){
 	if(typeof posAltura !== 'string' || posAltura == '' || typeof posLado !== 'string' || posLado == ''){
@@ -87,9 +88,13 @@ function generarSnackbr(posAltura, posLado){
 	
 	if (window.matchMedia){
 		window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
-			snackbrOscuro(event.matches);
+			if(snackbrModoOscuro == true){
+				snackbrOscuro(event.matches);
+			}
 		});
-		snackbrOscuro(window.matchMedia('(prefers-color-scheme: dark)').matches);
+		if(snackbrModoOscuro == true){
+			snackbrOscuro(window.matchMedia('(prefers-color-scheme: dark)').matches);
+		}
 	}
 
 	return true;

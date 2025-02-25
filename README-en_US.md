@@ -15,7 +15,7 @@ Download both `snackbr.min.css` and `snackbr.min.js` files, and upload them to t
 <body>
 ```
 
-## OPTIONS
+## PARAMETERS
 
 ```JAVASCRIPT
 snackbr(VISIBLE, ERROR, TEXT, LOADING, TIMED, TIME, ICON);
@@ -24,14 +24,15 @@ snackbr(VISIBLE, ERROR, TEXT, LOADING, TIMED, TIME, ICON);
 | PARAMETER | DATA TYPE | DEFAULT | DESCRIPTION |
 | --------- | ------------- | ----------- | ----------- |
 | VISIBLE\* | boolean | indeterminate | Show or hide the snackbar. |
-| ERROR\* | boolean | indeterminate | Shows in red if there is an error (true). |
-| TEXT\* | string | indeterminate | The text to display (you can use HTML tags). |
+| ERROR\*\* | boolean | indeterminate | Shows in red if there is an error (true). |
+| TEXT\*\* | string | indeterminate | The text to display (you can use HTML tags). |
 | LOADING | boolean | false | Shows an animation of a rotating circle. |
 | TIMED | boolean | false | Defines whether after a period of time in seconds it is automatically hidden or remains visible indefinitely. |
 | TIME | int | 3 seconds | Time in seconds before self-concealment. |
 | ICON | "adv", "err", "info" | indeterminate | Color of the icon in the shape of admiration (!). If not defined, it is not displayed. |
 
 \**Mandatory.*
+\*\**Required if `VISIBLE` is `TRUE`*
 
 ## USE
 ### To show;
@@ -64,11 +65,22 @@ By default, it is set to center-bottom, but you can specify other options.
 ```HTML
 <script>
 // Position the SNACKBR
-// HIGH (string): "arriba", "abajo"
+// HEIGHT (string): "arriba", "abajo"
 // SIDE (string): "izquierda", "centro", "derecha"
-generarSnackbr(HIGH, SIDE);
+generarSnackbr(HEIGHT, SIDE);
 </script>
 ```
+
+## DARK MODE
+
+You can leave the dark mode on auto by setting it to your system, or you can use the function to do so.
+
+```JAVASCRIPT
+// true = enable dark mode
+// false = disable dark mode
+snackbrOscuro(true|false);
+```
+Note that the auto mode is always on, if you want to disable it then set the `snackbrModoOscuro` variable to `false` before calling the script.
 
 ## SECURITY WARNING
 

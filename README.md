@@ -71,6 +71,17 @@ generarSnackbr(ALTO, LADO);
 </script>
 ```
 
+## MODO OSCURO
+
+Puede dejar en automático el modo oscuro configurandose según su sistema, o puede usar la función a fin.
+
+```JAVASCRIPT
+// true  = activa el modo oscuro
+// false = quita el modo oscuro
+snackbrOscuro(true|false);
+```
+Tenga en cuenta que el modo automático está siempre activo, si desea desactivarlo entonces haga `false` la variable `snackbrModoOscuro` antes de llamar al script.
+
 ## ADVERTENCIA DE SEGURIDAD
 
 Debido a que permite ingresar etiquetas HTML, tenga cuidado al usar AJAX u otra tecnología ya que puede ser inyectado facilmente código malicioso.
